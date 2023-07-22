@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 
-function App() {
+import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
+import Paymanet from "./pages/Paymanet";
+import Main from "./pages/Main";
+import TvShows from "./pages/TvShows";
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/" element={<SignUp />} />
+      <Route path="/payment" element={<Paymanet />} />
+      <Route path="/main" element={<Main />} />
+      <Route path="/tvShows" element={<TvShows />} />
+      {/* <Route exact path="/player" element={<Player />} /> */}
+      {/* <Route exact path="/movies" element={<Movies />} /> */}
+      {/* <Route exact path="/mylist" element={<MyList />} /> */}
+      {/* <Route exact path="/mylist" element={<MyList />} /> */}
+      {/* <Route exact path="/userProfile" element={<UserProfile />} /> */}
+    </Routes>
   );
-}
+};
 
 export default App;

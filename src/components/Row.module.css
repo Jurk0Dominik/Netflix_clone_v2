@@ -1,0 +1,70 @@
+h1 {
+  color: #ffffff;
+}
+.row {
+  position: relative;
+  padding: 2rem 3rem;
+}
+.movies::-webkit-scrollbar {
+  display: none;
+}
+.largeRow::-webkit-scrollbar {
+  display: none;
+}
+.movies {
+  display: flex;
+  overflow: scroll;
+  padding: 2rem;
+}
+.largeRow {
+  display: flex;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  padding: 3rem;
+}
+.movies img {
+  max-height: 9rem;
+  object-fit: contain;
+  width: 100%;
+  margin-left: 1.5rem;
+  transition: all 0.3s;
+  /* transform: translateX(-100%); */
+}
+.largeRow img {
+  max-height: 9rem;
+  object-fit: contain;
+  width: 100%;
+  margin-left: 2rem;
+  transition: all 0.3s;
+}
+.movies img:hover,
+.largeRow img:hover {
+  scale: 1.1;
+}
+
+.row button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 6rem;
+  color: rgb(255, 255, 255);
+  transition: all 0.3s;
+  z-index: 1000;
+}
+
+.leftBtn {
+  top: 35%;
+  left: 5rem;
+}
+.rightBtn {
+  top: 35%;
+  right: 5rem;
+}
+.row button:hover {
+  text-shadow: 1px 1px 10px white;
+  scale: 1.2;
+}

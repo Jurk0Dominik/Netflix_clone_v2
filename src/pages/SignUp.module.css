@@ -1,0 +1,80 @@
+.signContainer {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+.background {
+  height: 100vh;
+  width: 100vw;
+  filter: brightness(60%);
+}
+.signContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0 0.5);
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-rows: 15vh 60vh;
+  align-items: center;
+  text-align: center;
+}
+.text {
+  color: white;
+  width: 80vw;
+}
+.text h1 {
+  font-weight: 900;
+  font-size: 4rem;
+}
+.text h2 {
+  margin-top: 2rem;
+}
+.inform {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.form input {
+  margin-top: 1.5rem;
+  padding: 0.8rem 0.5rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  margin-left: 0.5rem;
+  transition: all 1s;
+  outline: none;
+  text-align: center;
+  border: none;
+}
+input::placeholder {
+  color: white;
+}
+.loginBtn {
+  margin-top: 0.5rem;
+}
+.blockBtn {
+  margin-top: 0.5rem;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.hidden {
+  display: none;
+}
+.hiddenBtn {
+  visibility: hidden;
+}
+.form button,
+.inform button {
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  background-color: red;
+  cursor: pointer;
+  text-transform: uppercase;
+}

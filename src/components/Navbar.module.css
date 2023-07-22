@@ -1,0 +1,88 @@
+.navbar {
+  position: absolute;
+  display: flex;
+  z-index: 100;
+  width: 100vw;
+}
+.sticky {
+  position: absolute;
+  display: flex;
+  z-index: 100;
+  width: 100vw;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.leftNav {
+  width: 60vw;
+  display: flex;
+  align-items: center;
+}
+.leftNav img {
+  height: 5rem;
+}
+.links {
+  display: flex;
+  list-style-type: none;
+  transition: all 0.3s ease-in-out;
+}
+.links li a {
+  color: white;
+  font-size: 1.1rem;
+  margin-left: 1.8rem;
+  text-decoration: none;
+}
+.active {
+  font-weight: bold;
+  text-shadow: 1px 1px 20px rgb(255, 255, 255);
+}
+.rightNav {
+  width: 40vw;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  margin-right: 1rem;
+}
+.search button {
+  border: none;
+  background: none;
+  scale: 1;
+  color: white;
+}
+.search input {
+  margin-left: 1rem;
+  color: white;
+  width: 10rem;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.search input:focus {
+  outline: none;
+}
+.signoutBtn {
+  margin-left: 1.5rem;
+}
+
+.rightNav img {
+  height: 2.5rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  border: none;
+}
+.rightNav svg {
+  cursor: pointer;
+}
+@media (max-width: 1200px) {
+  .links {
+    display: none;
+  }
+}
+@media (max-width: 800px) {
+  .rightNav svg {
+    display: none;
+  }
+  .search input {
+    display: none;
+  }
+}

@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate, NavLink } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+
 import logo from "../assets/logo.png";
-import accountImg from "../assets/accountImg.jpg";
-import { Link, useNavigate, NavLink } from "react-router-dom";
 import classes from "./Navbar.module.css";
+import accountImg from "../assets/accountImg.jpg";
 import { FaPowerOff, FaSearch } from "react-icons/fa";
-import { signOut } from "firebase/auth";
-import { firebaseAuth } from "../utils/firebase-config";
-import { onAuthStateChanged } from "firebase/auth";
 
 const links = [
   { name: "Home", link: "/main" },
@@ -19,6 +18,7 @@ const links = [
 function Navbar() {
   const navigate = useNavigate();
   const [sticky, setSticky] = useState(false);
+  const { logout, user } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,15 +29,8 @@ function Navbar() {
   });
 
   const signOutHandler = async function () {
-    signOut(firebaseAuth)
-      .then(() => {
-        onAuthStateChanged(firebaseAuth, (currentUser) => {
-          if (!currentUser) {
-            navigate("/login");
-          }
-        });
-      })
-      .catch((err) => {});
+    console.log(user?.email);
+    await logout();
   };
 
   return (

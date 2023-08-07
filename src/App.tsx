@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Paymanet from "./pages/Paymanet";
 import Main from "./pages/Main";
 import TvShows from "./pages/TvShows";
+import UserProfile from "./pages/UserProfile";
 
 const App: React.FC = () => {
   return (
@@ -15,11 +16,11 @@ const App: React.FC = () => {
       <Route path="/payment" element={<Paymanet />} />
       <Route path="/main" element={<Main />} />
       <Route path="/tvShows" element={<TvShows />} />
+      <Route path="/userProfile" element={<UserProfile />} />
       {/* <Route exact path="/player" element={<Player />} /> */}
       {/* <Route exact path="/movies" element={<Movies />} /> */}
       {/* <Route exact path="/mylist" element={<MyList />} /> */}
       {/* <Route exact path="/mylist" element={<MyList />} /> */}
-      {/* <Route exact path="/userProfile" element={<UserProfile />} /> */}
     </Routes>
   );
 };

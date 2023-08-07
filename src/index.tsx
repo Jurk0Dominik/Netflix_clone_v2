@@ -1,7 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+
+import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./hooks/useAuth";
+import { RecoilRoot } from "recoil";
 
 import "./i18n";
 
@@ -13,7 +16,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <RecoilRoot>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </RecoilRoot>
     </BrowserRouter>
   </React.StrictMode>
 );

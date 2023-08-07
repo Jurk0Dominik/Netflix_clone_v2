@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 import classes from "./Payment.module.css";
@@ -8,6 +8,12 @@ function Paymanet() {
   const naviagate = useNavigate();
   const [priceValue, setPriceValue] = useState("1.99");
   const [click, setClick] = useState(false);
+
+  // useEffect(() => {
+  //   if (global.history.length > 1) {
+  //     window.open(window.location.href, "_blank");
+  //   }
+  // }, []);
 
   const payPalHandler = (e) => {
     const price = e.target.value;

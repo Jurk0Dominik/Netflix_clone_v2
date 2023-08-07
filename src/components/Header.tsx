@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import logo from "../assets/logo.png";
 import classes from "./Header.module.css";
+import { useNavigate } from "react-router";
 
 const Header: React.FC<{ sendData: (data: string) => void }> = ({
   sendData,
@@ -14,10 +14,6 @@ const Header: React.FC<{ sendData: (data: string) => void }> = ({
   useEffect(() => {
     i18n.changeLanguage("en");
   }, [i18n]);
-
-  const buttonHandler = () => {
-    navigate("/login");
-  };
 
   const langHandler = (e: any) => {
     sendData(e.target.value);
@@ -39,7 +35,7 @@ const Header: React.FC<{ sendData: (data: string) => void }> = ({
           <option value="pl">Poland</option>
           <option value="en">English</option>
         </select>
-        <button onClick={buttonHandler}>{t("button.logIn")}</button>
+        <button onClick={() => navigate("/login")}>{t("button.logIn")}</button>
       </div>
     </div>
   );

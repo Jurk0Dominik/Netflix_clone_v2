@@ -1,105 +1,60 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import useAuth from "../hooks/useAuth";
+import { useForm, SubmitHandler } from "react-hook-form";
+
 import classes from "./Login.module.css";
 import background from "../assets/background.jpg";
-import { firebaseAuth } from "../utils/firebase-config";
 import logo from "../assets/logo.png";
-import { useTranslation } from "react-i18next";
-//
-// import { useDispatch } from "react-redux";
-// import { login, logout } from "../store/userSlice";
+
+interface Inputs {
+  email: string;
+  password: string;
+}
 
 function Login() {
-  const navigate = useNavigate();
   const { t } = useTranslation();
-  const userRef = useRef<HTMLInputElement>(null);
-  const [emailValue, setEmailValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState(String);
 
-  const [emialIsValid, setEmialIsValid] = useState(true);
-  const [passwordIsValid, setPasswordIsValid] = useState(true);
+  const { signIn } = useAuth();
 
-  useEffect(() => {
-    userRef.current?.focus();
-  }, []);
-
-  useEffect(() => {
-    setEmialIsValid(true);
-    setPasswordIsValid(true);
-  }, [emailValue, passwordValue]);
-
-  const loginFormSubmit = async (e: any) => {
-    e.preventDefault();
-    if (!emailValue.includes("@")) setEmialIsValid(false);
-    if (passwordValue.length >= 0) setPasswordIsValid(false);
-
-    // try {
-    //   await signInWithEmailAndPassword(firebaseAuth, emailValue, passwordValue);
-
-    //   onAuthStateChanged(firebaseAuth, (currentUser) => {
-    //     if (currentUser) {
-    //       // dispatch(
-    //       //   login({
-    //       //     uid: currentUser.uid,
-    //       //     email: currentUser.email,
-    //       //   })
-    //       // );
-    //       //   navigate("/main-Page");
-    //     } else {
-    //       // dispatch(logout);
-    //     }
-    //     setEmailValue("");
-    //     setPasswordValue("");
-    //   });
-    //   //
-    // } catch (err) {
-    //   if (!emailValue.includes("@")) setEmialIsValid(false);
-    //   if (!passwordValue.length) setPasswordIsValid(false);
-    // }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
+  const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
+    await signIn(email, password);
   };
 
   return (
-    <form className={classes.loginContainer} onSubmit={loginFormSubmit}>
+    <div className={classes.loginContainer}>
       <img src={background} alt="" className={classes.background} />
       <img src={logo} alt="Netflix-Logo" className={classes.netflixLogo} />
       <div className={classes.loginLayout}>
-        <div className={classes.loginForm}>
+        <form onSubmit={handleSubmit(onSubmit)} className={classes.loginForm}>
           <h1>{t("text.signUp")}</h1>
-          <div className={classes.data}>
-            <input
-              type="email"
-              id="email"
-              placeholder={t("input.email")}
-              autoComplete="on"
-              ref={userRef}
-              value={emailValue}
-              onChange={(e) => setEmailValue(e.target.value)}
-              required
-            />
-            {!emialIsValid && <p>Please enter a valid or phone number</p>}
-          </div>
-          <div className={classes.data}>
-            <input
-              type="password"
-              id="password"
-              placeholder={t("input.psd")}
-              value={passwordValue}
-              onChange={(e) => setPasswordValue(e.target.value)}
-              required
-            />
-            {!passwordIsValid && <p>Please enter a correct password</p>}
-          </div>
-          <button>{t("button.logIn")} &raquo;</button>
+          <input
+            type="email"
+            placeholder={t("input.email")}
+            {...register("email")}
+          />
+          {errors.email && <p>Please enter a valid or phone number</p>}
+          <input
+            type="password"
+            placeholder={t("input.psd")}
+            {...register("password")}
+          />
+          {errors.password && <p>Please enter a correct password</p>}
+          <button type="submit">{t("button.logIn")} &raquo;</button>
           <div className={classes.downForm}>
             <span>{t("text.account")}</span>
             <Link className={classes.link} to="/">
               {t("button.signNow")}
             </Link>
           </div>
-        </div>
+        </form>
       </div>
-    </form>
+    </div>
   );
 }
 

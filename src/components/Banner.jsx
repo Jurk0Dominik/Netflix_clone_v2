@@ -1,30 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../utils/axios";
-import requests from "../utils/request";
 
 import { FaPlay } from "react-icons/fa";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import classes from "./Banner.module.css";
+import { useRecoilState } from "recoil";
+import { modalState, movieState } from "../atoms/modalAtom";
+// import { Movie } from "../../typings";
+
+// interface Props {
+//   nerflixOrignials: Movie[];
+// }
 
 function Banner({ fetchUrl }) {
   const navigate = useNavigate();
   const [isLoaded, setIsLoaded] = useState(false);
-  const [movie, setMovie] = useState("");
+  const [showModal, setShowModal] = useRecoilState(modalState);
+  const [movie, setMovie] = useState(null);
+  const [currrentMovie, setCurrentMovie] = useRecoilState(movieState);
   // const [movie2, setMovie2] = useState();
 
   let imgUrl;
-  if (movie !== "" && isLoaded)
-    imgUrl = `url(http://image.tmdb.org/t/p/original/${movie?.backdrop_path}`;
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const request = await axios.get(film);
-  //     setMovie2(request.data.results);
-  //     return request;
-  //   }
-  //   fetchData();
-  // }, [film]);
+  if (movie) {
+    imgUrl = `url(http://image.tmdb.org/t/p/original/${movie?.backdrop_path}`;
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -64,13 +65,21 @@ function Banner({ fetchUrl }) {
             >
               <FaPlay /> Play
             </button>
-            <button className={classes.infoBtn}>
+            <button
+              className={classes.infoBtn}
+              onClick={() => {
+                setShowModal(true);
+                setCurrentMovie(movie);
+              }}
+            >
               <AiOutlineInfoCircle /> More Info
             </button>
           </div>
-          <h1 className={classes.description}>
-            {cutText(movie?.overview, 300)}
-          </h1>
+          <div className={classes.informContainer}>
+            <h1 className={classes.description}>
+              {cutText(movie?.overview, 300)}
+            </h1>
+          </div>
         </div>
         <div className={classes.fadeBottom} />
       </div>

@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 import classes from "./Payment.module.css";
 import { useNavigate } from "react-router";
+import { useRecoilState } from "recoil";
+import { subscribePlan } from "../atoms/modalAtom";
 
 function Paymanet() {
   const naviagate = useNavigate();
   const [priceValue, setPriceValue] = useState("1.99");
   const [click, setClick] = useState(false);
-
-  // useEffect(() => {
-  //   if (global.history.length > 1) {
-  //     window.open(window.location.href, "_blank");
-  //   }
-  // }, []);
+  const [subscribe, setSubscribe] = useRecoilState(subscribePlan);
 
   const payPalHandler = (e) => {
     const price = e.target.value;
+    setSubscribe(
+      planSubscribe.map((plan) => plan.price === price && plan.planName)
+    );
     setPriceValue(price);
     setClick(true);
   };
 
-  const subscribePlan = [
+  const planSubscribe = [
     {
       planName: "Podstawowy",
       price: "29",
@@ -51,7 +51,7 @@ function Paymanet() {
         </h3>
         <div className={classes.paymentForm}>
           <h3>Cena miesięczna</h3>
-          {subscribePlan.map((plan) => (
+          {planSubscribe.map((plan) => (
             <div className={classes.paySubscribe} key={plan.planName}>
               <h4>{plan.planName}</h4>
               <span>{plan.price} zł</span>
@@ -73,6 +73,7 @@ function Paymanet() {
           >
             <PayPalButtons
               createOrder={(data, actions) => {
+                console.log(actions);
                 return actions.order.create({
                   purchase_units: [
                     {

@@ -16,3 +16,13 @@ export const modalTitle = atom({
   key: "movieTitle",
   default: "",
 });
+
+export const selectGenre = atom({
+  key: "selectGenre",
+  default: 16,
+});
+
+export const subscribePlan = atom({
+  key: "subscribePlan",
+  default: "",
+});

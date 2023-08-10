@@ -11,7 +11,7 @@ const links = [
   { name: "Home", link: "/main" },
   { name: "Tv Shows", link: "/tvShows" },
   { name: "Movies", link: "/movies" },
-  { name: "New & Popular", link: "new&popular" },
+  { name: "New & Popular", link: "/new&popular" },
   { name: "My List", link: "/mylist" },
 ];
 
@@ -29,7 +29,7 @@ function Navbar() {
   });
 
   const signOutHandler = async function () {
-    console.log(user?.email);
+    // console.log(user?.email);
     await logout();
   };
 

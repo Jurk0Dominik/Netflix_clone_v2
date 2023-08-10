@@ -19,7 +19,6 @@ function Banner({ fetchUrl }) {
   const [showModal, setShowModal] = useRecoilState(modalState);
   const [movie, setMovie] = useState(null);
   const [currrentMovie, setCurrentMovie] = useRecoilState(movieState);
-  // const [movie2, setMovie2] = useState();
 
   let imgUrl;
 
@@ -61,17 +60,14 @@ function Banner({ fetchUrl }) {
           <div className={classes.buttons}>
             <button
               className={classes.playBtn}
-              onClick={() => navigate("/player")}
-            >
-              <FaPlay /> Play
-            </button>
-            <button
-              className={classes.infoBtn}
               onClick={() => {
                 setShowModal(true);
                 setCurrentMovie(movie);
               }}
             >
+              <FaPlay /> Play
+            </button>
+            <button className={classes.infoBtn}>
               <AiOutlineInfoCircle /> More Info
             </button>
           </div>

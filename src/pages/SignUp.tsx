@@ -17,6 +17,7 @@ interface Inputs {
 function SignUp() {
   const { t, i18n } = useTranslation();
   const [lang, setLang] = useState("");
+  // const { user } = useAuth();
 
   const [click, setClick] = useState(false);
 

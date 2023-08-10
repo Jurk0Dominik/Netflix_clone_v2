@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 
-function TvShows() {
+function NewPopular() {
   return (
     <div>
       <Navbar />
@@ -9,4 +9,4 @@ function TvShows() {
   );
 }
 
-export default TvShows;
+export default NewPopular;

@@ -1,0 +1,41 @@
+.containerInformation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.userInformation {
+  display: grid;
+  border-radius: 0.3rem;
+  /* flex-direction: csolumn; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  max-width: 60vw;
+  background-color: rgb(54, 55, 55);
+  padding: 2rem;
+  margin-top: 5rem;
+  position: relative;
+}
+.imgContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.userInformation h1 {
+  margin-bottom: 2rem;
+}
+.userInformation img {
+  height: 5rem;
+}
+.userInformation button {
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  background-color: red;
+  cursor: pointer;
+  text-transform: uppercase;
+}

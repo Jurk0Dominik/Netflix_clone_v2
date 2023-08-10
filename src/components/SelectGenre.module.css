@@ -1,0 +1,16 @@
+.select {
+  margin-top: 7rem;
+  overflow: scroll;
+  margin-left: 3rem;
+  font-size: 1.1rem;
+  border: 1px solid white;
+  border-radius: 0.3rem;
+  text-align: center;
+  padding: 0.5rem 0;
+  text-transform: uppercase;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.select:hover {
+  box-shadow: 1px 1px 10px 1px white;
+}
